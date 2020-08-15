@@ -13,17 +13,42 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col1[]            = "#ffffff";
+static const char col2[]            = "#ffffff";
+static const char col3[]            = "#ffffff";
+static const char col4[]            = "#ffffff";
+static const char col5[]            = "#ffffff";
+static const char col6[]            = "#ffffff";
+static const char col7[]            = "#ffffff";
+static const char col8[]            = "#ffffff";
+static const char col9[]            = "#ffffff";
+static const char col10[]           = "#ffffff";
+static const char col11[]           = "#ffffff";
+static const char col12[]           = "#ffffff";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm]  = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]   = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeCol1]  = { col1,      col_gray1, col_gray2 },
+	[SchemeCol2]  = { col2,      col_gray1, col_gray2 },
+	[SchemeCol3]  = { col3,      col_gray1, col_gray2 },
+	[SchemeCol4]  = { col4,      col_gray1, col_gray2 },
+	[SchemeCol5]  = { col5,      col_gray1, col_gray2 },
+	[SchemeCol6]  = { col6,      col_gray1, col_gray2 },
+	[SchemeCol7]  = { col7,      col_gray1, col_gray2 },
+	[SchemeCol8]  = { col8,      col_gray1, col_gray2 },
+	[SchemeCol9]  = { col8,      col_gray1, col_gray2 },
+	[SchemeCol10] = { col10,     col_gray1, col_gray2 },
+	[SchemeCol11] = { col11,     col_gray1, col_gray2 },
+	[SchemeCol12] = { col12,     col_gray1, col_gray2 }
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha }
+	
 };
 
 /* tagging */
@@ -42,8 +67,8 @@ static const Rule rules[] = {
 	{ "mpv",             NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "Steam",           NULL,       NULL,       1 << 6,       0,           -1 },
     { "libreoffice",     NULL,       NULL,       1 << 7,       0,           -1 },
-    { "newsboat",        NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "calendar",        NULL,       NULL,       1 << 5,       0,           -1 },
+    { "newsboat",        NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "calendar",        NULL,       NULL,       1 << 3,       0,           -1 },
 
 };
 
@@ -61,6 +86,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod1Mask
+
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -79,13 +105,15 @@ static const char *termcmdCalendar[]  = { "st","-c","calendar","-e","calendar", 
 
 
 
+
+
 #include "shiftview.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = termcmdNewsboat } },
-	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = termcmdCalendar } },
+	{ MODKEY,             			XK_n,      spawn,          {.v = termcmdNewsboat } },
+	{ MODKEY,             			XK_n,      spawn,          {.v = termcmdCalendar } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,              			XK_Right,  shiftview,      { .i = +1 } },
 	{ MODKEY,              			XK_Left,   shiftview,      { .i = -1 } },
@@ -112,9 +140,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ Mod4Mask,                     XK_F11,  spawn,        SHCMD("amixer -q sset Master 5%-") },
+	{ MODKEY,                       XK_equal,  spawn,        SHCMD("amixer -q sset Master 5%+") },
+	{ MODKEY|ShiftMask,             XK_equal,  spawn,        SHCMD("amixer -q sset Master toggle") },  //toggle sound
+	{ MODKEY|ShiftMask,             XK_minus,  spawn,        SHCMD("amixer set Capture toggle") },   //toggle microphone
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -125,6 +154,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY, XK_Print, spawn, SHCMD("sleep .5; scrot -s ~/Pictures/screenshots/%Y-%m-%d-%s%w%h.jpg") },
+
 };
 
 /* button definitions */
