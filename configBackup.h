@@ -112,7 +112,6 @@ static const char *termcmdCalendar[]  = { "st","-c","calendar","-e","calendar", 
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ControlMask,           XK_space,  focusmaster,    {0} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             			XK_n,      spawn,          {.v = termcmdNewsboat } },
 	{ MODKEY,             			XK_n,      spawn,          {.v = termcmdCalendar } },
