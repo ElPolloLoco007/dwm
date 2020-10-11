@@ -13,7 +13,7 @@ xrandr --output DP-1-1 --primary --mode 1920x1080 --rate 119.98 --output eDP-1-1
 
 # Wallpaper
 nitrogen --restore &
-
+~/.local/bin/dwmblocks &
 # VPN
 nordvpn c &
 ( exec  "/suckless/dwmblocks/dwmblocks") &

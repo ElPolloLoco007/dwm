@@ -8,6 +8,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "ubuntuMono-R:size=12","JoyPixels:12" };
 static const char dmenufont[]       = "ubuntuMono-R:size=12";
+static const char dmenuhp[]       = "firefox,spotify,pcmanfm,dbeaver";
 static const int focusonwheel       = 0;
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -43,7 +44,7 @@ static const char *colors[][3]      = {
 	[SchemeCol9]  = { col8,      col_gray1, col_gray2 },
 	[SchemeCol10] = { col10,     col_gray1, col_gray2 },
 	[SchemeCol11] = { col11,     col_gray1, col_gray2 },
-	[SchemeCol12] = { col12,     col_gray1, col_gray2 }
+	[SchemeCol12] = { col12,     col_gray1, col_gray2 },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -101,7 +102,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4,"-hp",dmenuhp, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *termcmdNewsboat[]  = { "st","-c","newsboat","-e","newsboat", NULL };
 static const char *termcmdCalendar[]  = { "st","-c","calendar","-e","calendar", NULL };
