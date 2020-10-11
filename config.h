@@ -114,6 +114,7 @@ static const char *termcmdCalendar[]  = { "st","-c","calendar","-e","calendar", 
 #include "shiftview.c"
 
 static Key keys[] = {
+	 //light-locker-command -l
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  focusmaster,    {0} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
