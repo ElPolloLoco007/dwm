@@ -2,22 +2,22 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 6;        /* gaps between windows */
+static const unsigned int gappx     = 4;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "ubuntuMono-R:size=12","JoyPixels:12" };
 static const char dmenufont[]       = "ubuntuMono-R:size=12";
-static const char dmenuhp[]       = "firefox,spotify,pcmanfm,dbeaver";
+static const char dmenuhp[]       = "brave,spotify,pcmanfm,dbeaver,thunderbird,steam,newsboat";
 static const int focusonwheel       = 0;
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray1[]       = "#440BD4"; //menu
+static const char col_gray2[]       = "#3CB3FF";
+static const char col_gray3[]       = "#FF2247"; //telstur
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col1[]            = "#ffffff";
-static const char col2[]            = "#ffffff";
-static const char col3[]            = "#ffffff";
+static const char col_cyan[]        = "#3CB371"; // millum menu
+static const char col1[]            = "#FFD700";
+static const char col2[]            = "#FF2223";
+static const char col3[]            = "#EE1234";
 static const char col4[]            = "#ffffff";
 static const char col5[]            = "#ffffff";
 static const char col6[]            = "#ffffff";
@@ -33,8 +33,8 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]  = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]   = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeCol1]  = { col1,      col_gray1, col_gray2 },
-	[SchemeCol2]  = { col2,      col_gray1, col_gray2 },
+	[SchemeCol1]  = { col1,      col2, col2 },
+	[SchemeCol2]  = { col2,      col3, col2 },
 	[SchemeCol3]  = { col3,      col_gray1, col_gray2 },
 	[SchemeCol4]  = { col4,      col_gray1, col_gray2 },
 	[SchemeCol5]  = { col5,      col_gray1, col_gray2 },
@@ -54,7 +54,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "❇", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "🏠", "⚒", "🔧", "🎵🎥", "🐔", "📰", "📈", "🗓", "📧" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -62,16 +62,15 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class             instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",            NULL,       NULL,       0,            1,           -1 },
 	{ "code",            NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Spotify Premium", NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "dbeaver",         NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "spotify", 		 NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Thunderbird",     NULL,       NULL,       1 << 8,       0,           -1 },
     { "Skype",   		 NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "mpv",             NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "Steam",           NULL,       NULL,       1 << 6,       0,           -1 },
-    { "libreoffice",     NULL,       NULL,       1 << 7,       0,           -1 },
-    { "newsboat",        NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "calendar",        NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "mpv",             NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Steam",           NULL,       NULL,       1 << 4,       0,           -1 },
+    { "newsboat",        NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "calendar",        NULL,       NULL,       1 << 7,       0,           -1 },
 
 };
 
@@ -107,10 +106,6 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *termcmdNewsboat[]  = { "st","-c","newsboat","-e","newsboat", NULL };
 static const char *termcmdCalendar[]  = { "st","-c","calendar","-e","calendar", NULL };
 
-
-
-
-
 #include "shiftview.c"
 
 static Key keys[] = {
@@ -123,7 +118,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,              			XK_Right,  shiftview,      { .i = +1 } },
 	{ MODKEY,              			XK_Left,   shiftview,      { .i = -1 } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY,                       XK_m,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_Down,   rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_Up,     rotatestack,    {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
@@ -131,28 +126,28 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_comma,  setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_period,   setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
+	{ MODKEY|ControlMask,			XK_Down,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_Up, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+	{ MODKEY,                       XK_q,  focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_w, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_F11,  spawn, SHCMD("amixer -q sset Master 2%-") },
 	{ MODKEY,                       XK_F12,  spawn, SHCMD("amixer -q sset Master 2%+") },
 	{ MODKEY,                       XK_F10,  spawn, SHCMD("amixer -q sset Master toggle") },  //toggle sound
 	{ MODKEY|ShiftMask,             XK_F10,  spawn, SHCMD("amixer set Capture toggle") },   //toggle microphone
-	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_h,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
@@ -162,8 +157,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY, XK_Print, spawn, SHCMD("sleep .5; scrot -s ~/Pictures/screenshots/%Y-%m-%d-%s%w%h.jpg") },
-
+	{ MODKEY,             			XK_l,      spawn,          SHCMD("light-locker-command -l")},
+	{ MODKEY, 						XK_Print, spawn, SHCMD("sleep .5; scrot -s ~/Pictures/screenshots/%Y-%m-%d-%s%w%h.jpg") },
 };
 
 /* button definitions */

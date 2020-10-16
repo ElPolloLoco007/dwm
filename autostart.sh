@@ -19,7 +19,6 @@ nordvpn c &
 ( exec  "/suckless/dwmblocks/dwmblocks") &
 ( exec "code" ) & 
 ( exec "thunderbird" ) &
-( exec "skypeforlinux" ) & 
 ( exec "steam" ) & 
 
 
