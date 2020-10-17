@@ -61,17 +61,17 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class             instance    title       tags mask     isfloating   monitor */
-	{ "code",            NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "dbeaver",         NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "spotify", 		 NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Thunderbird",     NULL,       NULL,       1 << 8,       0,           -1 },
-    { "Skype",   		 NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "mpv",             NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Steam",           NULL,       NULL,       1 << 4,       0,           -1 },
-    { "newsboat",        NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "stock-ticker",    NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "calendar",        NULL,       NULL,       1 << 7,       0,           -1 },
+	/* class             instance    title       tags mask    switchtotag    isfloating   monitor */
+	{ "code",            NULL,       NULL,       1 << 1,      0,			    0,           -1 },
+	{ "dbeaver",         NULL,       NULL,       1 << 2,      0,    			0,           -1 },
+	{ "spotify", 		 NULL,       NULL,       1 << 3,      0,    			0,           -1 },
+	{ "Thunderbird",     NULL,       NULL,       1 << 8,      0,    			0,           -1 },
+    { "Skype",   		 NULL,       NULL,       1 << 8,      0,   			    0,           -1 },
+	{ "mpv",             NULL,       NULL,       1 << 3,      0,    			0,           -1 },
+	{ "Steam",           NULL,       NULL,       1 << 4,      0,    			0,           -1 },
+    { "newsboat",        NULL,       NULL,       1 << 5,      0,    			0,           -1 },
+	{ "stock-ticker",    NULL,       NULL,       1 << 6,      0,    			0,           -1 },
+	{ "calendar",        NULL,       NULL,       1 << 7,      0,    			0,           -1 },
 
 };
 
