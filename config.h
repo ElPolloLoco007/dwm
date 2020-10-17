@@ -12,7 +12,7 @@ static const char dmenuhp[]       = "brave,spotify,pcmanfm,dbeaver,thunderbird,s
 static const int focusonwheel       = 0;
 static const char col_gray1[]       = "#440BD4"; //menu
 static const char col_gray2[]       = "#3CB3FF";
-static const char col_gray3[]       = "#FF2247"; //telstur
+static const char col_gray3[]       = "#eeeeee"; //telstur
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#3CB371"; // millum menu
 static const char col1[]            = "#FFD700";
@@ -70,6 +70,7 @@ static const Rule rules[] = {
 	{ "mpv",             NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Steam",           NULL,       NULL,       1 << 4,       0,           -1 },
     { "newsboat",        NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "stock-ticker",    NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "calendar",        NULL,       NULL,       1 << 7,       0,           -1 },
 
 };
@@ -102,9 +103,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4,"-hp",dmenuhp, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *termcmdNewsboat[]  = { "st","-c","newsboat","-e","newsboat", NULL };
-static const char *termcmdCalendar[]  = { "st","-c","calendar","-e","calendar", NULL };
+static const char *cmd[]  = { "st", NULL };
+static const char *cmdNewsboat[]  = { "st","-c","newsboat","-e","newsboat", NULL };
+static const char *cmdCalendar[]  = { "st","-c","calendar","-e","calendar", NULL };
+static const char *cmdStockTicker[]  = {"st","-c","stock-ticker","-e","python3 ~/Projects/Python/stock-ticker/stock-ticker.py ~/Projects/Python/stock-ticker/watchlist.txt", NULL };
+
 
 #include "shiftview.c"
 
@@ -113,9 +116,10 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  focusmaster,    {0} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,             			XK_n,      spawn,          {.v = termcmdNewsboat } },
-	{ MODKEY,             			XK_n,      spawn,          {.v = termcmdCalendar } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,             			XK_n,      spawn,          {.v = cmdNewsboat } },
+	{ MODKEY,             			XK_n,      spawn,          {.v = cmdCalendar } },
+	{ MODKEY,             			XK_n,      spawn,          {.v = cmdStockTicker } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = cmd } },
 	{ MODKEY,              			XK_Right,  shiftview,      { .i = +1 } },
 	{ MODKEY,              			XK_Left,   shiftview,      { .i = -1 } },
 	{ MODKEY,                       XK_m,      togglebar,      {0} },
@@ -155,7 +159,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_e,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,             			XK_l,      spawn,          SHCMD("light-locker-command -l")},
 	{ MODKEY, 						XK_Print, spawn, SHCMD("sleep .5; scrot -s ~/Pictures/screenshots/%Y-%m-%d-%s%w%h.jpg") },
@@ -168,7 +172,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = cmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
