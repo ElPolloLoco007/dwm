@@ -1,5 +1,7 @@
 #!/bin/bash
 
+~/.local/bin/dwmblocks &
+
 # Compositor
 picom -f &
 
@@ -13,14 +15,14 @@ xrandr --output DP-1-1 --primary --mode 1920x1080 --rate 119.98 --output eDP-1-1
 
 # Wallpaper
 nitrogen --restore &
-~/.local/bin/dwmblocks &
-# VPN
-nordvpn c &
+
+
 ( exec  "/suckless/dwmblocks/dwmblocks") &
 ( exec "code" ) & 
 ( exec "thunderbird" ) &
 ( exec "steam" ) & 
 
-
 # activating
-st -e xdotool keydown Alt key n keyup Alt &
+xdotool keydown Super key n keyup Super &
+#swao alt super
+setxkbmap -option altwin:swap_alt_win &

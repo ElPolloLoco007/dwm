@@ -56,6 +56,7 @@ static const unsigned int alphas[][3]      = {
 /* tagging */
 static const char *tags[] = { "🏠", "⚒", "🔧", "🎵🎥", "🐔", "📰", "📈", "🗓", "📧" };
 
+//$xprop | grep 'CLASS'
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -63,14 +64,16 @@ static const Rule rules[] = {
 	 */
 	/* class             instance    title       tags mask    switchtotag    isfloating   monitor */
 	{ "code",            NULL,       NULL,       1 << 1,      0,			    0,           -1 },
-	{ "dbeaver",         NULL,       NULL,       1 << 2,      0,    			0,           -1 },
-	{ "spotify", 		 NULL,       NULL,       1 << 3,      0,    			0,           -1 },
+	{ "DBeaver",         NULL,       NULL,       1 << 2,      0,    			0,           -1 },
 	{ "Thunderbird",     NULL,       NULL,       1 << 8,      0,    			0,           -1 },
     { "Skype",   		 NULL,       NULL,       1 << 8,      0,   			    0,           -1 },
 	{ "mpv",             NULL,       NULL,       1 << 3,      0,    			0,           -1 },
+	{ "spotify", 		 "Spotify",       NULL,       1 << 3,      0,    			0,           -1 },
+
+	{ "mpv",             NULL,       NULL,       1 << 3,      0,    			0,           -1 },
 	{ "Steam",           NULL,       NULL,       1 << 4,      0,    			0,           -1 },
     { "newsboat",        NULL,       NULL,       1 << 5,      0,    			0,           -1 },
-	{ "stock-ticker",    NULL,       NULL,       1 << 6,      0,    			0,           -1 },
+	{ "stockticker",     NULL,       NULL,       1 << 6,      0,    			0,           -1 },
 	{ "calendar",        NULL,       NULL,       1 << 7,      0,    			0,           -1 },
 
 };
@@ -89,7 +92,8 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+//$xmodmap
+#define MODKEY Mod4Mask
 
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -105,10 +109,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4,"-hp",dmenuhp, NULL };
 static const char *cmd[]  = { "st", NULL };
 static const char *cmdNewsboat[]  = { "st","-c","newsboat","-e","newsboat", NULL };
-static const char *cmdCalendar[]  = { "st","-c","calendar","-e","calendar", NULL };
-static const char *cmdStockTicker[]  = {"st","-c","stock-ticker","-e","python3 ~/Projects/Python/stock-ticker/stock-ticker.py ~/Projects/Python/stock-ticker/watchlist.txt", NULL };
-
-
+static const char *cmdCalendar[]  = {"st","-c","calendar","-e","calendar","--waitForCommand", NULL };
+static const char *cmdStockticker[]  = {"st", "-c", "stockticker","-e", "stockticker","/usr/local/bin/watchlist.txt", NULL };
+//terminator -p 'hold'  -l 'hold' -e '/usr/local/bin/stock-ticker.py /usr/local/bin/watchlist.txt'
 #include "shiftview.c"
 
 static Key keys[] = {
@@ -118,7 +121,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             			XK_n,      spawn,          {.v = cmdNewsboat } },
 	{ MODKEY,             			XK_n,      spawn,          {.v = cmdCalendar } },
-	{ MODKEY,             			XK_n,      spawn,          {.v = cmdStockTicker } },
+	{ MODKEY,             			XK_n,      spawn,          {.v = cmdStockticker } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = cmd } },
 	{ MODKEY,              			XK_Right,  shiftview,      { .i = +1 } },
 	{ MODKEY,              			XK_Left,   shiftview,      { .i = -1 } },
