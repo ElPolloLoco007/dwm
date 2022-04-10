@@ -15,7 +15,7 @@ static const char col_cyan[]        = "#00d1d1";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_yellow, col_black, col_black },
-	[SchemeSel]  = { col_cyan, col_black,  col_cyan  },
+	[SchemeSel]  = { col_cyan, col_black,  col_yellow  },
 };
 
 
@@ -96,9 +96,9 @@ static const char *powershutdown[]  	= { "sd-power","shutdown", NULL };
 static const char *powerreboot[]  		= { "sd-power","reboot", NULL };
 static const char *screens[]  			= { "screens", NULL };
 static const char *media[]  			= { "sd-media", NULL };
-static const char *firefox[]  			= { "firefox", NULL };
+static const char *firefox[]  		= { "firefox", NULL };
 static const char *togglelanguage[]  	= { "toggle-language", NULL };
-static const char *slock[]  			= { "slock", NULL };
+static const char *slock[]  			= { "sudo","slock", NULL };
 
 
 static Key keys[] = {
