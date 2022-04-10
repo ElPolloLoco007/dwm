@@ -30,7 +30,7 @@ static const Rule rules[] = {
 	 */
 	/* class             instance    			title       tags mask     switchtotag     isfloating   monitor */
 	{ "Alacritty",       "Alacritty",   		NULL,       1 << 0,       1,              0,           -1 },
-	{ "firefox",         NULL,       			NULL,       1 << 2,       1,              0,           -1 },
+	{ "Qutebrowser",     NULL,       			NULL,       1 << 2,       1,              0,           -1 },
 	{ "Code",            "code",     			NULL,       1 << 1,       1,		      0,           -1 },
 	{ "DBeaver",         NULL,       			NULL,       1 << 3,       1,		      0,           -1 },
 	{ "discord",         NULL,       			NULL,       1 << 8,       1,	   	 	  0,           -1 },
@@ -96,7 +96,7 @@ static const char *powershutdown[]  	= { "sd-power","shutdown", NULL };
 static const char *powerreboot[]  		= { "sd-power","reboot", NULL };
 static const char *screens[]  			= { "screens", NULL };
 static const char *media[]  			= { "sd-media", NULL };
-static const char *firefox[]  		= { "firefox", NULL };
+static const char *qutebrowser[]  		= { "qutebrowser", NULL };
 static const char *togglelanguage[]  	= { "toggle-language", NULL };
 static const char *slock[]  			= { "sudo","slock", NULL };
 
@@ -129,7 +129,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,      zoom,           {0} },
 	{ MODKEY,             			XK_l,           spawn,          {.v = slock }},
 	{ MODKEY,                       XK_space,     	spawn,          {.v = togglelanguage }},
-	{ MODKEY,                       XK_f,           spawn,          {.v = firefox }},
+	{ MODKEY,                       XK_f,           spawn,          {.v = qutebrowser }},
 	{ MODKEY,			      		XK_m,           spawn,          {.v = media }},
 	{ MODKEY,                       XK_F3,          spawn,          {.v = screens }},
 	{ MODKEY|ShiftMask,      		XK_z,           spawn,          {.v = powerreboot }},
@@ -141,15 +141,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F11,         spawn, 		    {.v = voldown }},
 	{ MODKEY,                       XK_F12,         spawn, 		    {.v = volup }},
 	{ NULL,                         XK_Print,       spawn,          {.v = flameshot }},
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_1,           0)
+	TAGKEYS(                        XK_2,           1)
+	TAGKEYS(                        XK_3,           2)
+	TAGKEYS(                        XK_4,           3)
+	TAGKEYS(                        XK_5,           4)
+	TAGKEYS(                        XK_6,           5)
+	TAGKEYS(                        XK_7,           6)
+	TAGKEYS(                        XK_8,           7)
+	TAGKEYS(                        XK_9,           8)
 };
 
 
