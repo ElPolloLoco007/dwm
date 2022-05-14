@@ -6,6 +6,7 @@ static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int showborder         = 1;        /* 0 means no border */
 static const int focusonwheel       = 0;
 static const char *fonts[]          = { "3270Medium Nerd Font:size=14" };
 static const char dmenufont[]       = "3270Medium Nerd Font:size=14";
@@ -110,6 +111,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period,  	shiftview,      {.i = +1 } },
 	{ MODKEY,                       XK_comma, 		shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_b,           togglebar,      {0} },
+	{ MODKEY|ShiftMask,         	XK_b,   		toggleborder,   {0} },
     { MODKEY,                       XK_e,           focusstack,     {.i = +1 } },
     { MODKEY,                       XK_w,           focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,      		XK_e,           incnmaster,     {.i = +1 } },
