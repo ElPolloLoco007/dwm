@@ -65,6 +65,7 @@ static const Layout layouts[] = {
 	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "恵",      monocle },
 	{ "﩯",      grid },
+	{ "充",      bstack },
 	{ NULL,		NULL },
 };
 
