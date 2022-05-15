@@ -23,6 +23,9 @@ static const char *colors[][3]      = {
 /* icons */
 static const char *tags[] = {"", "ﬥ", "爵", "璉", "ﳲ", "", "", "", "ﴠ"};
 
+/* first element is for all-tag view */
+static int defaultlayouts[1 + LENGTH(tags)]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2};
+
 //use: xprop
 static const Rule rules[] = {
 	/* xprop(1):
