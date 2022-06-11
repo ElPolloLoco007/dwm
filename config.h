@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 static const char *tags[] = {"", "ﬥ", "爵", "璉", "ﳲ", "", "", "", "ﴠ"};
 
 /* first element is for all-tag view */
-static int defaultlayouts[1 + LENGTH(tags)]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2};
+static int defaultlayouts[1 + LENGTH(tags)]  = { 0, 0, 0, 0, 0, 0, 0, 3, 4, 2};
 
 //use: xprop
 static const Rule rules[] = {
@@ -33,8 +33,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class             instance    			title       tags mask     switchtotag     isfloating   monitor */
-	{ "Alacritty",       "Alacritty",   		NULL,       1 << 0,       1,              0,           -1 },
-	{ "Firefox",         NULL,       			NULL,       1 << 2,       1,              0,           -1 },
+	{ "firefox",         NULL,       			NULL,       1 << 2,       1,              0,           -1 },
 	{ "Code",            "code",     			NULL,       1 << 1,       1,		      0,           -1 },
 	{ "DBeaver",         NULL,       			NULL,       1 << 3,       1,		      0,           -1 },
 	{ "discord",         NULL,       			NULL,       1 << 8,       1,	   	 	  0,           -1 },
@@ -44,11 +43,11 @@ static const Rule rules[] = {
 	{ "mpv",             NULL,       			NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Steam",           NULL,       			NULL,       1 << 5,       1, 			  0,           -1 },
 	{ "calendar",        NULL,       			NULL,       1 << 7,       1,  			  0,           -1 },
-	{ "Alacritty",       "news",  				NULL,       1 << 6,       1,  			  0,           -1 },
+	{ "Alacritty",       "news",  				NULL,       1 << 8,       1,  			  0,           -1 },
 	{ "Alacritty",       "radio",       		NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty", 		 "newsboat-player",   	NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty",       "pi",   				NULL,       1 << 6,       1,  			  0,           -1 },
-	{ "Alacritty",       "crypto",   			NULL,       1 << 7,       0,  			  0,           -1 },
+	{ "Alacritty",       "investment",   		NULL,       1 << 7,       0,  			  0,           -1 },
 
 };
 
@@ -89,6 +88,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]	= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_yellow, "-sb", col_black, "-sf", col_cyan, NULL };
+static const char *dmenukillcmd[]	= { "dmenu_kill",NULL };
 static const char *termcmd[]  	= { "alacritty", NULL };
 
 /* scripts commands */
@@ -103,6 +103,7 @@ static const char *powershutdown[]  	= { "sd-power","shutdown", NULL };
 static const char *powerreboot[]  		= { "sd-power","reboot", NULL };
 static const char *screens[]  			= { "screens", NULL };
 static const char *media[]  			= { "sd-media", NULL };
+static const char *firefoxtab[]  		= { "firefox","--new-tab", "duckduckgo.com", NULL };
 static const char *firefox[]  			= { "firefox", NULL };
 static const char *togglelanguage[]  	= { "toggle-language", NULL };
 static const char *slock[]  			= { "sudo","slock", NULL };
@@ -111,6 +112,7 @@ static const char *slock[]  			= { "sudo","slock", NULL };
 static Key keys[] = {
 	/* modifier                         key               function        argument */
 	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_k,           spawn,          {.v = dmenukillcmd } },
 	{ MODKEY|ShiftMask,      		XK_Return, 		spawn,          {.v = termcmd } },
     { MODKEY,                       XK_s,           rotatestack,   	{.i = +1 } },
 	{ MODKEY,                       XK_a,           rotatestack,  	{.i = -1 } },
@@ -137,7 +139,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,      zoom,           {0} },
 	{ MODKEY,             			XK_l,           spawn,          {.v = slock }},
 	{ MODKEY,                       XK_space,     	spawn,          {.v = togglelanguage }},
-	{ MODKEY,                       XK_f,           spawn,          {.v = firefox }},
+	{ MODKEY,                       XK_f,           spawn,          {.v = firefoxtab }},
+	{ MODKEY|ShiftMask,             XK_f,           spawn,          {.v = firefox }},
 	{ MODKEY,			      		XK_m,           spawn,          {.v = media }},
 	{ MODKEY,                       XK_F3,          spawn,          {.v = screens }},
 	{ MODKEY|ShiftMask,      		XK_z,           spawn,          {.v = powerreboot }},

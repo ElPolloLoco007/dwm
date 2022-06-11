@@ -1681,8 +1681,8 @@ run(void)
 
 void
 runAutostart(void) {
-	system("cd /suckless/dwm; ./autostart_blocking.sh");
-	system("cd /suckless/dwm; ./autostart.sh &");
+	system("cd /suckless/dwm; zsh autostart_blocking.sh");
+	system("cd /suckless/dwm; zsh autostart.sh &");
 }
 
 void
