@@ -36,6 +36,6 @@ else
             amixer set Capture nocap;pkill -RTMIN+5 dwmblocks &
         fi
     else
-        echo "No parameter 11."
+        echo "No parameter."
     fi
 fi
