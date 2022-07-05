@@ -1,0 +1,15 @@
+#! /bin/bash
+
+[ $(echo -e "Yes\nNo" | dmenu -p "$1") == "Yes" ] && 
+if [[ -z $1 ]];then
+    echo "No parameter passed."
+else
+    echo "$1"
+
+    if [ "$1" == 'shutdown' ]; then
+        sudo shutdown -P now
+    fi
+    if [ "$1" == 'reboot' ]; then
+        sudo reboot
+    fi
+fi

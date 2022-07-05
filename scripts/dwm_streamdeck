@@ -1,0 +1,4 @@
+#!/bin/bash
+
+streamdeck --no-ui;read line > /dev/null 2>&1 & disown
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+alacritty --class investment -e python3 /storage/projects/python/stock-ticker-original/stock-ticker.py /storage/projects/python/stock-ticker-original/watchlist.txt &
+sleep 1
+alacritty --class investment -e tickrs &
+sleep 1

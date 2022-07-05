@@ -1,0 +1,12 @@
+#!/bin/bash
+alacritty --class pi -e ssh p1 &
+#sleep 1
+#alacritty --class pi -e ssh p1 mosquitto-mqtt &
+#sleep 1 
+#alacritty --class pi -e ssh p4 &
+sleep 1 
+alacritty --class pi -e ssh p3 &
+sleep 1
+alacritty --class pi -e ssh p2 &
+
+

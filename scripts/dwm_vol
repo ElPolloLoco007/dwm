@@ -1,0 +1,41 @@
+#!/bin/bash
+
+status="$(amixer get Master | awk '$0~/%/{print $6}' | tr -d '[]')"
+mic=$(amixer get Capture | awk -F'[][]' 'END{ print $6 }')
+
+if [[ -z $1 ]];
+then
+    echo "No parameter passed."
+else
+    if [ "$1" == 'vol' ]; then
+        if [ "$status" == 'off' ]; then
+            amixer set Master unmute;pkill -RTMIN+5 dwmblocks &
+            amixer set Headphone unmute;pkill -RTMIN+5 dwmblocks &
+            amixer set Speaker unmute%;pkill -RTMIN+5 dwmblocks &
+            amixer set 'Bass Speaker' unmute%;pkill -RTMIN+5 dwmblocks &
+        else
+            amixer set Master mute%;pkill -RTMIN+5 dwmblocks &
+            amixer set Headphone mute%;pkill -RTMIN+5 dwmblocks &
+            amixer set Speaker mute%;pkill -RTMIN+5 dwmblocks &
+            amixer set 'Bass Speaker' mute%;pkill -RTMIN+5 dwmblocks &
+        fi
+    elif [ "$1" == "up" ]; then
+        amixer set Master 3%+;pkill -RTMIN+5 dwmblocks &
+        amixer set Headphone 3%+;pkill -RTMIN+5 dwmblocks &
+        amixer set Speaker 3%+;pkill -RTMIN+5 dwmblocks &
+        
+    elif [ "$1" == "down" ]; then
+        amixer set Master 3%-;pkill -RTMIN+5 dwmblocks &
+        amixer set Headphone 3%-;pkill -RTMIN+5 dwmblocks &
+        amixer set Speaker 3%-;pkill -RTMIN+5 dwmblocks &
+        
+    elif [ "$1" == "mic" ]; then
+        if [ "$mic" == "off" ]; then
+            amixer set Capture cap;pkill -RTMIN+5 dwmblocks &
+        else
+            amixer set Capture nocap;pkill -RTMIN+5 dwmblocks &
+        fi
+    else
+        echo "No parameter 11."
+    fi
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# config
+rsync -zaP --delete /home/helgi/.config /storage/arch/dotfiles/
+rsync -zaP --delete /home/helgi/.ssh /storage/arch/dotfiles/
+rsync -zaP --delete /home/helgi/.vim /storage/arch/dotfiles/
+rsync -zaP --delete /home/helgi/.oh-my-zsh /storage/arch/dotfiles/
+rsync -zaP /home/helgi/.xinitrc  /storage/arch/dotfiles/
+rsync -zaP /home/helgi/.zshrc  /storage/arch/dotfiles/
+rsync -zaP /home/helgi/.vimrc /storage/arch/dotfiles/
+rsync -zaP /etc/optimus-manager/optimus-manager.conf /storage/arch/dotfiles/
+rsync -zaP .xscreensaver /storage/arch/dotfiles/
+rsync -zaP --delete /usr/local/bin  /storage/arch/dotfiles/
+rsync -zaP --delete /suckless /storage/arch/dotfiles/
+rsync -zaP --delete /home/helgi/.fonts  /storage/arch/dotfiles/
+
+

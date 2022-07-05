@@ -43,7 +43,7 @@ static const Rule rules[] = {
 	{ "mpv",             NULL,       			NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Steam",           NULL,       			NULL,       1 << 5,       1, 			  0,           -1 },
 	{ "calendar",        NULL,       			NULL,       1 << 7,       1,  			  0,           -1 },
-	{ "Alacritty",       "news",  				NULL,       1 << 8,       1,  			  0,           -1 },
+	{ "Alacritty",       "news",  				NULL,       1 << 8,       0,  			  0,           -1 },
 	{ "Alacritty",       "radio",       		NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty", 		 "newsboat-player",   	NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty",       "pi",   				NULL,       1 << 6,       1,  			  0,           -1 },
@@ -92,20 +92,22 @@ static const char *dmenukillcmd[]	= { "dmenu_kill",NULL };
 static const char *termcmd[]  	= { "alacritty", NULL };
 
 /* scripts commands */
-static const char *flameshot[]  		= { "flameshot","gui", NULL };
-static const char *volup[]  			= { "sd-vol","up", NULL };
-static const char *voldown[]  			= { "sd-vol","down", NULL };
-static const char *volvol[]  			= { "sd-vol","vol", NULL };
-static const char *volmic[]  			= { "sd-vol","mic", NULL };
-static const char *brightnessup[]  		= { "brightness","+10", NULL };
-static const char *brightnessdown[]  	= { "brightness","-10", NULL };
-static const char *powershutdown[]  	= { "sd-power","shutdown", NULL };
-static const char *powerreboot[]  		= { "sd-power","reboot", NULL };
-static const char *screens[]  			= { "screens", NULL };
+static const char *volup[]  			= { "dwm_vol","up", NULL };
+static const char *voldown[]  			= { "dwm_vol","down", NULL };
+static const char *volvol[]  			= { "dwm_vol","vol", NULL };
+static const char *volmic[]  			= { "dwm_vol","mic", NULL };
+static const char *brightnessup[]  		= { "dwm_brightness","+10", NULL };
+static const char *brightnessdown[]  	= { "dwm_brightness","-10", NULL };
+static const char *powershutdown[]  	= { "dwm_power","shutdown", NULL };
+static const char *powerreboot[]  		= { "dwm_power","reboot", NULL };
+static const char *screens[]  			= { "dwm_screens", NULL };
 static const char *media[]  			= { "sd-media", NULL };
-static const char *firefoxtab[]  		= { "firefox","--new-tab", "duckduckgo.com", NULL };
+static const char *togglelanguage[]  	= { "dwm_toggle_language", NULL };
+
+/* application commands */
 static const char *firefox[]  			= { "firefox", NULL };
-static const char *togglelanguage[]  	= { "toggle-language", NULL };
+static const char *firefoxtab[]  		= { "firefox","--new-tab", "duckduckgo.com", NULL };
+static const char *flameshot[]  		= { "flameshot","gui", NULL };
 static const char *slock[]  			= { "sudo","slock", NULL };
 
 

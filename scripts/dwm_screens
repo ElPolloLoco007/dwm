@@ -1,0 +1,53 @@
+#!/bin/bash
+
+gpu=$(optimus-manager --status | awk 'NR==3 { print $5 }')
+
+monitor1=""
+monitor2=""
+monitor3=""
+
+if [[ $gpu = 'hybrid' ]]; then
+    monitor1="DP-1-0"
+    monitor2="HDMI-1"
+    monitor3="eDP-1"
+fi
+if [[ $gpu = 'nvidia' ]]; then
+    monitor1="DP-0"
+    monitor2="HDMI-1-1"
+    monitor3="eDP-1-1"
+fi
+if [[ $gpu = 'integrated' ]]; then
+    monitor1="DP-1-0"
+    monitor2="HDMI-A-0"
+    monitor3="eDP"
+fi
+
+echo $gpu
+hdmi=$(xrandr | grep ' connected' | grep $monitor2 | awk '{print $1}')
+dp=$(xrandr | grep ' connected' | grep $monitor1 | awk '{print $1}')
+echo $dp
+echo $hdmi
+if [ ! -z "$hdmi" ] && [ ! -z "$dp" ]; then
+    xrandr --output "$monitor1" --mode 1440x900 --pos 0x0 --rotate normal --output "$monitor2" --mode 1920x1080 --pos 1440x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 3360x0
+    xdotool mousemove --screen 0 2400 540 &
+    xdotool click 1 &
+    exit 3
+fi
+
+if [ ! -z "$hdmi" ] && [ -z "$dp" ]; then
+    xrandr --output "$monitor2" --mode 1920x1080 --pos 0x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 1920x0 --rotate normal
+    xdotool mousemove --screen 0 960 540 &
+    xdotool click 1 &
+    exit 2
+fi
+
+if [ -z "$hdmi" ] && [ ! -z "$dp" ]; then
+    xrandr --output "$monitor1" --mode 1920x1080 --pos 0x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 1920x0 --rotate normal
+    exit 1
+fi
+if [ -z "$hdmi" ] && [ -z "$dp" ]; then
+    xrandr --output "$monitor3" --mode 1920x1080
+    setxkbmap -option altwin:swap_alt_win &
+
+    exit 1
+fi

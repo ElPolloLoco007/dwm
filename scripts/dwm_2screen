@@ -1,0 +1,14 @@
+#!/bin/sh
+
+gpu=$(optimus-manager --status | awk 'NR==3 { print $5 }')
+
+if [[ $gpu = 'hybrid' ]] || [[ $gpu = 'integrated' ]]; then
+    hdmi_active=$(xrandr |grep ' connected' |grep 'HDMI' |awk '{print $1}')
+    [[ ! -z "$hdmi_active" ]] && xrandr --output HDMI-1 --primary --auto --output eDP-1 --auto --right-of HDMI-1
+    [[ -z "$hdmi_active" ]] && xrandr --output eDP-1 --mode 1920x1080
+else
+    xrandr --output HDMI-1-1 --mode 1920x1080 --primary --output eDP-1-1 --mode 1920x1080 --right-of HDMI-1-1
+    echo "nvidia"
+fi
+
+#xdotool mousemove --screen 0 3000 500
