@@ -22,11 +22,9 @@ if [[ $gpu = 'integrated' ]]; then
     monitor3="eDP"
 fi
 
-echo $gpu
 hdmi=$(xrandr | grep ' connected' | grep $monitor2 | awk '{print $1}')
 dp=$(xrandr | grep ' connected' | grep $monitor1 | awk '{print $1}')
-echo $dp
-echo $hdmi
+
 if [ ! -z "$hdmi" ] && [ ! -z "$dp" ]; then
     xrandr --output "$monitor1" --mode 1440x900 --pos 0x0 --rotate normal --output "$monitor2" --mode 1920x1080 --pos 1440x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 3360x0
     xdotool mousemove --screen 0 2400 540 &
@@ -48,6 +46,5 @@ fi
 if [ -z "$hdmi" ] && [ -z "$dp" ]; then
     xrandr --output "$monitor3" --mode 1920x1080
     setxkbmap -option altwin:swap_alt_win &
-
     exit 1
 fi

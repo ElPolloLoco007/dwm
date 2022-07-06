@@ -1,6 +1,6 @@
 #! /bin/bash
 
-[ $(echo -e "Yes\nNo" | dmenu -p "$1") == "Yes" ] && 
+[ $(echo -e "Yes\nNo" | dmenu -z 295 -p "$1") == "Yes" ] && 
 if [[ -z $1 ]];then
     echo "No parameter passed."
 else
