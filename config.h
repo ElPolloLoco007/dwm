@@ -101,7 +101,7 @@ static const char *brightnessdown[]  	= { "dwm_brightness","-10", NULL };
 static const char *powershutdown[]  	= { "dwm_power","shutdown", NULL };
 static const char *powerreboot[]  		= { "dwm_power","reboot", NULL };
 static const char *screens[]  			= { "dwm_screens", NULL };
-static const char *media[]  			= { "sd-media", NULL };
+static const char *media[]  			= { "dmenu_media", NULL };
 static const char *togglelanguage[]  	= { "dwm_toggle_language", NULL };
 
 /* application commands */
