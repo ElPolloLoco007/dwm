@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	{ "discord",         NULL,       			NULL,       1 << 8,       1,	   	 	  0,           -1 },
 	{ "vncviewer",       NULL,       			NULL,       1 << 4,       1,	   	 	  0,           -1 },
     { "Skype",   		 NULL,       			NULL,       1 << 8,       1,			  0,           -1 },
-	{ "Spotify", 		 "spotify",				NULL,       1 << 4,       1, 			  0,           -1 },
+	{ "Spotify", 		 NULL,				NULL,       1 << 4,       1, 			  0,           -1 },
 	{ "mpv",             NULL,       			NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Steam",           NULL,       			NULL,       1 << 5,       1, 			  0,           -1 },
 	{ "calendar",        NULL,       			NULL,       1 << 7,       1,  			  0,           -1 },
@@ -86,10 +86,10 @@ static const Layout layouts[] = {
 #include "shiftview.c"
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]	= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_yellow, "-sb", col_black, "-sf", col_cyan, NULL };
-static const char *dmenukillcmd[]	= { "dmenu_kill",NULL };
-static const char *termcmd[]  	= { "alacritty", NULL };
+static char dmenumon[2] 				= "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]			= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_yellow, "-sb", col_black, "-sf", col_cyan, NULL };
+static const char *dmenukillcmd[]		= { "dmenu_kill",NULL };
+static const char *termcmd[]  			= { "alacritty", NULL };
 
 /* scripts commands */
 static const char *volup[]  			= { "dwm_vol","up", NULL };
