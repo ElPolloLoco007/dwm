@@ -133,6 +133,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     		XK_period, 	    setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,     		XK_c,           killclient,     {0} },
 	{ MODKEY,  					    XK_q,           cyclelayout,    {.i = +1 } },
+	{ MODKEY|ShiftMask,  			XK_q,           resetlayout,    {0} },
 	{ MODKEY,                       XK_minus,     	focusmon,       {.i = +1 } },
 	{ MODKEY,                       XK_plus,        focusmon,       {.i = -1 } },
 	{ MODKEY|ShiftMask,      		XK_minus,     	tagmon,         {.i = +1 } },
