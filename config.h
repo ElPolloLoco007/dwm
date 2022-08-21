@@ -36,9 +36,7 @@ static const Rule rules[] = {
 	{ "firefox",         NULL,       			NULL,       1 << 2,       1,              0,           -1 },
 	{ "Code",            "code",     			NULL,       1 << 1,       1,		      0,           -1 },
 	{ "DBeaver",         NULL,       			NULL,       1 << 3,       1,		      0,           -1 },
-	{ "discord",         NULL,       			NULL,       1 << 8,       1,	   	 	  0,           -1 },
 	{ "vncviewer",       NULL,       			NULL,       1 << 4,       1,	   	 	  0,           -1 },
-    { "Skype",   		 NULL,       			NULL,       1 << 8,       1,			  0,           -1 },
 	{ "Spotify", 		 "spotify",				NULL,       1 << 4,       1, 			  0,           -1 },
 	{ "mpv",             NULL,       			NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Steam",           NULL,       			NULL,       1 << 5,       1, 			  0,           -1 },
@@ -50,7 +48,6 @@ static const Rule rules[] = {
 	{ "Alacritty", 		 "newsboat-player",   	NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty",       "pi",   				NULL,       1 << 6,       1,  			  0,           -1 },
 	{ "Alacritty",       "investment",   		NULL,       1 << 7,       0,  			  0,           -1 },
-	{ "Tilda",       	  NULL,    			    NULL,       NULL,         0,              True,        -1 },
 };
 
 /* layout(s) */
