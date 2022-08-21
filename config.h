@@ -39,16 +39,18 @@ static const Rule rules[] = {
 	{ "discord",         NULL,       			NULL,       1 << 8,       1,	   	 	  0,           -1 },
 	{ "vncviewer",       NULL,       			NULL,       1 << 4,       1,	   	 	  0,           -1 },
     { "Skype",   		 NULL,       			NULL,       1 << 8,       1,			  0,           -1 },
-	{ "Spotify", 		 NULL,				NULL,       1 << 4,       1, 			  0,           -1 },
+	{ "Spotify", 		 "spotify",				NULL,       1 << 4,       1, 			  0,           -1 },
 	{ "mpv",             NULL,       			NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Steam",           NULL,       			NULL,       1 << 5,       1, 			  0,           -1 },
+	{ "Dwarf_Fortress",  "Dwarf_Fortress",      NULL,       1 << 5,       1, 			  0,           -1 },
+    { "Alacritty",       "games",           	NULL,       1 << 5,       1, 			  0,           -1 },
 	{ "calendar",        NULL,       			NULL,       1 << 7,       1,  			  0,           -1 },
 	{ "Alacritty",       "news",  				NULL,       1 << 8,       0,  			  0,           -1 },
 	{ "Alacritty",       "radio",       		NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty", 		 "newsboat-player",   	NULL,       1 << 4,       1,  			  0,           -1 },
 	{ "Alacritty",       "pi",   				NULL,       1 << 6,       1,  			  0,           -1 },
 	{ "Alacritty",       "investment",   		NULL,       1 << 7,       0,  			  0,           -1 },
-
+	{ "Tilda",       	  NULL,    			    NULL,       NULL,         0,              True,        -1 },
 };
 
 /* layout(s) */
@@ -61,10 +63,10 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "侀",      tile },    /* first entry is default */
-	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "恵",      monocle },
 	{ "﩯",      grid },
 	{ "充",      bstack },
+	{ "",      NULL },    /* no layout function means floating behavior */
 	{ NULL,		NULL },
 };
 
@@ -102,6 +104,7 @@ static const char *powershutdown[]  	= { "dwm_power","shutdown", NULL };
 static const char *powerreboot[]  		= { "dwm_power","reboot", NULL };
 static const char *screens[]  			= { "dwm_screens", NULL };
 static const char *media[]  			= { "dmenu_media", NULL };
+static const char *games[]  			= { "dmenu_games", NULL };
 static const char *togglelanguage[]  	= { "dwm_toggle_language", NULL };
 
 /* application commands */
@@ -129,21 +132,22 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    			XK_comma,  		setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,     		XK_period, 	    setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,     		XK_c,           killclient,     {0} },
-	{ MODKEY,  					    XK_q,           cyclelayout,    {.i = -1 } },
+	{ MODKEY,  					    XK_q,           cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_minus,     	focusmon,       {.i = +1 } },
-	{ MODKEY,                       XK_equal,       focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_plus,        focusmon,       {.i = -1 } },
 	{ MODKEY|ShiftMask,      		XK_minus,     	tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,      		XK_equal,       tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_q,           quit,           {0} },
+	{ MODKEY|ShiftMask,      		XK_plus,        tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_l,           quit,           {0} },
+	{ MODKEY,             			XK_l,           spawn,          {.v = slock }},
 	{ MODKEY,                       XK_Tab,         view,           {0} },
 	{ MODKEY,                       XK_0,           view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,    		  	XK_0,           tag,            {.ui = ~0 } },	
 	{ MODKEY,                       XK_Return,      zoom,           {0} },
-	{ MODKEY,             			XK_l,           spawn,          {.v = slock }},
 	{ MODKEY,                       XK_space,     	spawn,          {.v = togglelanguage }},
 	{ MODKEY,                       XK_f,           spawn,          {.v = firefoxtab }},
 	{ MODKEY|ShiftMask,             XK_f,           spawn,          {.v = firefox }},
 	{ MODKEY,			      		XK_m,           spawn,          {.v = media }},
+	{ MODKEY,			      		XK_g,           spawn,          {.v = games }},
 	{ MODKEY,                       XK_F3,          spawn,          {.v = screens }},
 	{ MODKEY|ShiftMask,      		XK_z,           spawn,          {.v = powerreboot }},
 	{ MODKEY|ShiftMask,      		XK_x,           spawn,          {.v = powershutdown }},
