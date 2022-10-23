@@ -1,4 +1,3 @@
-/* See LICENSE file for copyright and license details. */
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -42,13 +41,13 @@ static const Rule rules[] = {
 	{ "Steam",           NULL,       			NULL,       1 << 5,       1, 			  0,           -1 },
 	{ "Dwarf_Fortress",  "Dwarf_Fortress",      NULL,       1 << 5,       1, 			  0,            1 },
 	{ "dwarftherapist",  "dwarftherapist",      NULL,       1 << 5,       1, 			  0,            2 },
-    { "Alacritty",       "games",           	NULL,       1 << 5,       1, 			  0,           -1 },
+    { "games",      	 "games",           	NULL,       1 << 5,       1, 			  0,           -1 },
 	{ "calendar",        NULL,       			NULL,       1 << 7,       1,  			  0,           -1 },
-	{ "Alacritty",       "news",  				NULL,       1 << 8,       0,  			  0,           -1 },
-	{ "Alacritty",       "radio",       		NULL,       1 << 4,       1,  			  0,           -1 },
-	{ "Alacritty", 		 "newsboat-player",   	NULL,       1 << 4,       1,  			  0,           -1 },
-	{ "Alacritty",       "pi",   				NULL,       1 << 6,       1,  			  0,           -1 },
-	{ "Alacritty",       "investment",   		NULL,       1 << 7,       0,  			  0,           -1 },
+	{ "news",     		 "news",  				NULL,       1 << 8,       0,  			  0,           -1 },
+	{ "radio",    	     "radio",       		NULL,       1 << 4,       1,  			  0,           -1 },
+	{ "newsboat-player", "newsboat-player",   	NULL,       1 << 4,       1,  			  0,           -1 },
+	{ "pi",       		 "pi",   				NULL,       1 << 6,       1,  			  0,           -1 },
+	{ "investment",      "investment",   		NULL,       1 << 7,       0,  			  0,           -1 },
 };
 
 /* layout(s) */
@@ -58,9 +57,11 @@ static const int resizehints 	= 1;    /* 1 means respect size hints in tiled res
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #include "layouts.c"
+#include "tcl.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "侀",      tile },    /* first entry is default */
+	{ "|||",    tcl },
 	{ "恵",      monocle },
 	{ "﩯",      grid },
 	{ "充",      bstack },
