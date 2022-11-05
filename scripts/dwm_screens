@@ -33,7 +33,7 @@ if [ ! -z "$hdmi" ] && [ ! -z "$dp" ]; then
 fi
 
 if [ ! -z "$hdmi" ] && [ -z "$dp" ]; then
-    xrandr --output "$monitor2" --mode 1920x1080 --pos 0x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 1920x0 --rotate normal
+    xrandr --output "$monitor2" --mode 3440x1440 --pos 0x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 3440x0 --rotate normal
     xdotool mousemove --screen 0 960 540 &
     xdotool click 1 &
     echo "" $(optimus-manager --status | awk 'NR==3 { print $5 }')>'/suckless/dmenu/data/screenSelected'
