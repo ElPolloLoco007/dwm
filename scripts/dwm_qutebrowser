@@ -1,0 +1,6 @@
+!#/bin/zsh
+if [[ "$1" == "new" ]]; then
+  qutebrowser
+else
+  ps -C qutebrowser >/dev/null && qutebrowser --target tab duckduckgo.com || qutebrowser
+fi

@@ -1,0 +1,36 @@
+#!/bin/sh
+
+gpu=$(optimus-manager --status | awk 'NR==3 { print $5 }')
+
+
+monitor1=""
+monitor2=""
+monitor3=""
+
+if [[ $gpu = 'hybrid' ]]; then
+    monitor1="DP-1-0"
+    monitor2="HDMI-1"
+    monitor3="eDP-1"
+fi
+if [[ $gpu = 'nvidia' ]]; then
+    monitor1="DP-0"
+    monitor2="HDMI-1-1"
+    monitor3="eDP-1-1"
+fi
+if [[ $gpu = 'integrated' ]]; then
+    monitor1="DP-1-0"
+    monitor2="HDMI-A-0"
+    monitor3="eDP"
+fi
+
+hdmi=$(xrandr | grep ' connected' | grep $monitor2 | awk '{print $1}')
+dp=$(xrandr | grep ' connected' | grep $monitor1 | awk '{print $1}')
+
+hdmi_active=$(xrandr |grep ' connected' |grep 'HDMI' |awk '{print $1}')
+[[ ! -z "$hdmi_active" ]] && xrandr --output "$monitor2" --mode 3440x1440 --pos 0x0 --rotate normal --output "$monitor3" --mode 1920x1080 --pos 3440x0 --rotate normal
+[[ -z "$hdmi_active" ]] && xrandr --output "$monitor3" --mode 1920x1080
+
+#xdotool mousemove --screen 0 3000 500
+
+echo "" $(optimus-manager --status | awk 'NR==3 { print $5 }')>'/suckless/dmenu/data/screenSelected'
+pkill -RTMIN+12 dwmblocks
